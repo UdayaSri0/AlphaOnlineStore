@@ -21,10 +21,10 @@ Online Clothing Store (www.sample.com)
 
 ├── user                     # User account area
 │   ├── dashboard.php
-│   ├── profile.php
+│   ├── profile.phps
 │   ├── account_update.php
 │   ├── order_history.php
-│   └── wishlist.php         # (Optional) Saved items
+│   └── wishlist.php         # (Optional) Saved item
 
 ├── staff                    # Staff area (non-admin employees)
 │   ├── staff_dashboard.php

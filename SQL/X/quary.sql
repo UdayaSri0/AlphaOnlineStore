@@ -46,6 +46,30 @@ VALUES
 
 ****************************************************************************************************************************************
 
+
+CREATE TABLE brands (
+    brand_id INT AUTO_INCREMENT PRIMARY KEY,
+    brand_name VARCHAR(100) NOT NULL UNIQUE,
+    description TEXT DEFAULT NULL,
+    website_url VARCHAR(255) DEFAULT NULL, -- Optional brand website
+    is_deleted BOOLEAN DEFAULT FALSE, -- Soft delete
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE categories (
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(100) NOT NULL UNIQUE,
+    parent_category_id INT DEFAULT NULL, -- Allows subcategories
+    description TEXT DEFAULT NULL,
+    is_deleted BOOLEAN DEFAULT FALSE, -- Soft delete
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (parent_category_id) REFERENCES categories(category_id) ON DELETE SET NULL
+);
+
+
 CREATE TABLE products (
     product_id INT AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
@@ -63,17 +87,6 @@ CREATE TABLE products (
     FOREIGN KEY (brand_id) REFERENCES brands(brand_id) ON DELETE SET NULL
 );
 
-CREATE TABLE categories (
-    category_id INT AUTO_INCREMENT PRIMARY KEY,
-    category_name VARCHAR(100) NOT NULL UNIQUE,
-    parent_category_id INT DEFAULT NULL, -- Allows subcategories
-    description TEXT DEFAULT NULL,
-    is_deleted BOOLEAN DEFAULT FALSE, -- Soft delete
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (parent_category_id) REFERENCES categories(category_id) ON DELETE SET NULL
-);
-
 
 CREATE TABLE product_images (
     image_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -84,17 +97,6 @@ CREATE TABLE product_images (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
-);
-
-
-CREATE TABLE brands (
-    brand_id INT AUTO_INCREMENT PRIMARY KEY,
-    brand_name VARCHAR(100) NOT NULL UNIQUE,
-    description TEXT DEFAULT NULL,
-    website_url VARCHAR(255) DEFAULT NULL, -- Optional brand website
-    is_deleted BOOLEAN DEFAULT FALSE, -- Soft delete
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 
@@ -125,6 +127,15 @@ CREATE TABLE product_discounts (
 
 ########################################################################################################################################
 
+-- Insert sample data into brands
+INSERT INTO brands (brand_name, description, website_url, is_deleted)
+VALUES 
+('Apple', 'Leading brand in electronics', 'https://www.apple.com', FALSE),
+('Samsung', 'Innovative technology solutions', 'https://www.samsung.com', FALSE),
+('LG', 'Home and kitchen appliances', 'https://www.lg.com', FALSE),
+('Dell', 'High-performance laptops and PCs', 'https://www.dell.com', FALSE);
+
+
 -- Insert sample data into categories
 INSERT INTO categories (category_name, parent_category_id, description, is_deleted)
 VALUES 
@@ -133,13 +144,6 @@ VALUES
 ('Laptops', 1, 'Laptops and accessories', FALSE),
 ('Appliances', NULL, 'Home and kitchen appliances', FALSE);
 
--- Insert sample data into brands
-INSERT INTO brands (brand_name, description, website_url, is_deleted)
-VALUES 
-('Apple', 'Leading brand in electronics', 'https://www.apple.com', FALSE),
-('Samsung', 'Innovative technology solutions', 'https://www.samsung.com', FALSE),
-('LG', 'Home and kitchen appliances', 'https://www.lg.com', FALSE),
-('Dell', 'High-performance laptops and PCs', 'https://www.dell.com', FALSE);
 
 -- Insert sample data into products
 INSERT INTO products (product_name, description, price, stock_quantity, category_id, brand_id, image_url, is_active, is_deleted)
@@ -227,3 +231,43 @@ CREATE TABLE wishlist (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
+
+
+****************
+
+-- Insert sample data into `orders`
+INSERT INTO orders (order_number, user_id, total_amount, order_status, shipping_address, payment_method)
+VALUES
+('ORD10001', 1, 1200.00, 'Processing', '123 Alpha Street, Tech City', 'Credit Card'),
+('ORD10002', 2, 450.00, 'Shipped', '456 Beta Avenue, Metro City', 'PayPal'),
+('ORD10003', 1, 350.00, 'Pending', '123 Alpha Street, Tech City', 'Cash on Delivery'),
+('ORD10004', 3, 750.00, 'Cancelled', '789 Gamma Road, Capital City', 'Bank Transfer');
+
+-- Insert sample data into `order_items`
+INSERT INTO order_items (order_id, product_id, quantity, price)
+VALUES
+(1, 1, 2, 500.00), -- 2 x iPhone 14
+(1, 2, 1, 200.00), -- 1 x Galaxy S22 Case
+(2, 3, 3, 150.00), -- 3 x Dell Laptop Bags
+(3, 4, 1, 350.00), -- 1 x LG Microwave
+(4, 5, 2, 375.00); -- 2 x Apple AirPods
+
+-- Insert sample data into `order_logs`
+INSERT INTO order_logs (order_id, user_id, activity, ip_address)
+VALUES
+(1, 1, 'Order placed successfully', '192.168.1.101'),
+(1, 1, 'Order payment processed', '192.168.1.101'),
+(2, 2, 'Order shipped', '192.168.1.102'),
+(3, 1, 'Order awaiting payment confirmation', '192.168.1.101'),
+(4, 3, 'Order cancelled by user', '192.168.1.103');
+
+-- Insert sample data into `wishlist`
+INSERT INTO wishlist (user_id, product_id, notification_sent)
+VALUES
+(1, 1, FALSE), -- iPhone 14
+(1, 3, TRUE),  -- Dell Laptop Bag
+(2, 4, FALSE), -- LG Microwave
+(3, 5, FALSE); -- Apple AirPods
+
+
+*****************************************************************************************************************************************
