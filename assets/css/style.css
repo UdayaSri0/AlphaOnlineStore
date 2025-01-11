@@ -1,0 +1,146 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f0f8ff;
+    overflow-x: hidden;
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Header Container */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Logo */
+.logo img {
+    height: 50px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.logo img:hover {
+    transform: scale(1.1);
+}
+
+/* Navigation Menu */
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.nav-menu a:hover {
+    background-color: #fff;
+    color: #6a11cb;
+    transform: scale(1.1);
+}
+
+/* User Info */
+.user-info {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.user-info .user-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.user-info .user-image:hover {
+    transform: scale(1.1);
+}
+
+.user-info .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.user-info:hover .dropdown-menu {
+    display: block;
+}
+
+.user-info .dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.user-info .dropdown-menu a:hover {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(90deg, #2575fc, #6a11cb);
+    color: #eee;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    border-top: 3px solid #444;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .user-info {
+        margin-top: 10px;
+    }
+}

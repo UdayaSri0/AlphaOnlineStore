@@ -1,0 +1,103 @@
+Online Clothing Store (www.sample.com)
+├── .htaccess
+├── index.php                # Main landing page
+├── about.php                # About Us page
+├── contact.php              # Contact Us page
+├── header.php               # Common header/branding/navigation
+├── footer.php               # Common footer
+├── 404.php                  # Custom 404 error page
+
+├── htaccess                 # (Optional) Folder for additional/backup .htaccess files
+│   ├── admin_htaccess.txt
+│   ├── user_htaccess.txt
+│   └── sample_htaccess.txt
+
+├── auth                     # User authentication
+│   ├── login.php
+│   ├── register.php
+│   ├── logout.php
+│   ├── forgot_password.php
+│   └── reset_password.php
+
+├── user                     # User account area
+│   ├── dashboard.php
+│   ├── profile.php
+│   ├── account_update.php
+│   ├── order_history.php
+│   └── wishlist.php         # (Optional) Saved items
+
+├── staff                    # Staff area (non-admin employees)
+│   ├── staff_dashboard.php
+│   ├── staff_profile.php
+│   ├── staff_account_update.php
+│   └── scheduling
+│       ├── shift_schedule.php
+│       └── request_time_off.php
+
+├── cart                     # Shopping cart functionality
+│   ├── cart.php
+│   └── checkout.php
+
+├── admin                    # Admin area for managing the site
+│   ├── admin_dashboard.php
+│   ├── manage_users.php
+│   ├── manage_staff.php
+│   ├── manage_user_log.php    # (optional)
+│   ├── manage_orders.php
+│   ├── manage_categories.php
+│   ├── product
+│   │   ├── add_product.php
+│   │   ├── edit_product.php
+│   │   ├── delete_product.php
+│   │   └── manage_product.php
+│   ├── content                   # Pages & Banners management
+│   │   ├── manage_banners.php
+│   │   ├── manage_about.php
+│   │   └── manage_contact.php
+│   ├── reports                   # (Optional) Reporting/analytics
+│   │   ├── sales_report.php
+│   │   ├── user_report.php
+│   │   └── inventory_report.php
+│   ├── marketing                 # (Optional) Promotional tools
+│   │   ├── coupons.php
+│   │   ├── discounts.php
+│   │   ├── promotions.php
+│   │   └── newsletter.php
+│   └── assets                    # **Admin-specific front-end assets**
+│       ├── css
+│       │   └── admin_style.css   # For admin panel styling
+│       ├── js
+│       │   └── admin_script.js   # For admin panel interactivity
+│       └── images
+│           └── admin_logo.png    # e.g., separate admin branding
+
+├── includes (or inc)       # Reusable backend scripts
+│   ├── config.php
+│   ├── db_connect.php
+│   ├── functions.php
+│   ├── session.php
+│   └── middleware.php
+
+├── assets                   # Public-facing (front-end) assets
+│   ├── css
+│   │   └── style.css        # Main site stylesheet
+│   ├── js
+│   │   └── script.js        # Main site JavaScript
+│   ├── images
+│   │   ├── logo.png         # Public-facing logo
+│   │   ├── banner.jpg       # Homepage/banner images
+│   │   └── icons            # (Optional) SVG/icons
+│   └── uploads
+│       ├── products         # Product images
+│       └── banners          # Banners uploaded via admin panel
+
+├── docs                     # Documentation (optional)
+│   └── README.md
+
+├── cache                    # Cache folder (optional)
+│   └── index.html
+
+├── robots.txt               # For SEO (optional)
+├── sitemap.xml              # For SEO (optional)
+├── privacy.php              # Privacy policy (optional)
+└── terms.php                # Terms and conditions (optional)

@@ -1,0 +1,259 @@
+Root Files
+.htaccess
+
+Purpose: Main Apache configuration for URL rewriting, access control, and security.
+Key Features: SEO-friendly URLs, HTTP→HTTPS redirects, etc.
+index.php
+
+Purpose: The main landing page displaying featured products or promotional banners.
+about.php
+
+Purpose: Static or dynamic “About Us” page, editable via admin/content/manage_about.php.
+contact.php
+
+Purpose: “Contact Us” page; can feature a form or store details, also managed via admin/content/manage_contact.php.
+header.php / footer.php
+
+Purpose: Common layout elements included across pages for consistency (e.g., navigation, branding, footers).
+404.php
+
+Purpose: Custom error page shown when a user navigates to a non-existent route.
+htaccess Folder (Optional)
+Purpose: Holds backup or specialized versions of .htaccess for different environments or testing.
+Files:
+admin_htaccess.txt, user_htaccess.txt, sample_htaccess.txt: Examples or specialized rewrite rules.
+auth Folder (Authentication)
+Purpose: Handles user login, registration, logout, and password recovery.
+Files:
+login.php: User login form + session init.
+register.php: User sign-up logic (validation, DB insertion).
+logout.php: Ends user session and redirects.
+forgot_password.php & reset_password.php: Secure password reset flow.
+user Folder (User Account Area)
+Purpose: Pages accessible to logged-in users (shoppers).
+Files:
+dashboard.php: User overview, showing order status, recommended items, etc.
+profile.php & account_update.php: View and edit user details.
+order_history.php: Display all past purchases.
+wishlist.php: (Optional) Save favorite items for later purchase.
+staff Folder (Staff Area)
+Purpose: Limited-access portal for staff/employee responsibilities.
+Files:
+staff_dashboard.php: Daily tasks, updates, limited inventory management, etc.
+staff_profile.php & staff_account_update.php: Personal info and password changes for staff.
+scheduling/:
+shift_schedule.php: View/edit staff work schedules.
+request_time_off.php: Staff can request leave/vacation.
+cart Folder (Shopping Cart)
+Purpose: Manage cart operations and checkout flows.
+Files:
+cart.php: Shows items in the cart, calculates subtotal, shipping costs, etc.
+checkout.php: Final step for order placement, collects payment/shipping details.
+admin Folder (Admin Area)
+Purpose: Full management of the store: orders, products, users, content, etc. Restricted to admins.
+
+Notable Files & Subfolders:
+
+admin_dashboard.php
+
+Overview of key metrics (sales, pending orders).
+manage_users.php / manage_staff.php
+
+Create/edit/remove users & staff; manage permissions.
+manage_user_log.php
+
+(Optional) Tracks login activity for auditing/security.
+manage_orders.php
+
+Oversees all orders, updates statuses (e.g., shipped, refunded).
+manage_categories.php
+
+Create/edit/delete product categories (e.g., “Men’s Wear,” “Shoes”).
+product/
+
+add_product.php, edit_product.php, delete_product.php, manage_product.php: CRUD operations for store items.
+content/
+
+manage_banners.php: Upload or remove homepage/carousel banners.
+manage_about.php: Update the “About Us” content.
+manage_contact.php: Update the “Contact Us” page details.
+reports/ (Optional)
+
+sales_report.php, user_report.php, inventory_report.php: Data analytics and insights.
+marketing/ (Optional)
+
+coupons.php, discounts.php, promotions.php, newsletter.php: Manage sales campaigns, coupon codes, and promotional emails.
+assets/ (Admin-specific Front-End)
+
+css/admin_style.css: Custom admin panel styling.
+js/admin_script.js: Admin-side functionality (Ajax calls, dynamic forms).
+images/admin_logo.png: Separate admin branding, if desired.
+includes Folder (Reusable Backend Scripts)
+Purpose: Central location for config, database connections, utility functions, etc.
+Files:
+config.php: Global settings, environment variables (DB creds, site URL).
+db_connect.php: Database connection logic (using PDO or MySQLi).
+functions.php: Helper functions (file uploads, data validation, etc.).
+session.php: Session handling, can include advanced security measures.
+middleware.php: Role-based access checks (user, staff, admin).
+assets Folder (Public-Facing Assets)
+Purpose: Front-end resources for the customer-facing site.
+Structure:
+css/style.css: Main site CSS (layouts, colors, typography).
+js/script.js: Public JavaScript for dynamic elements (like product sliders).
+images/:
+logo.png: Store’s main public logo.
+banner.jpg: Default homepage/banner image.
+icons/: (Optional) small images or SVGs for UI elements.
+uploads/:
+products/: Product images uploaded by admin.
+banners/: Additional banner images, can be changed via manage_banners.php.
+docs Folder (Optional)
+Purpose: Stores additional documentation, developer guides, or design resources.
+Files:
+README.md: Introductory doc or instructions for contributors.
+cache Folder (Optional)
+Purpose: Directory for caching data or compiled templates, if you integrate a caching system.
+Files:
+index.html: Prevents unauthorized directory browsing.
+Other Files
+robots.txt & sitemap.xml (Optional)
+
+Purpose: SEO-related files. robots.txt can disallow specific routes for crawlers; sitemap.xml helps search engines index your site.
+privacy.php & terms.php (Optional)
+
+Purpose: Legal disclaimers, data handling policies, user rights, and store policies.
+
+
+# AlphaOnline File System Structure
+
+## Root Files
+- **.htaccess**
+  - Purpose: Main Apache configuration for URL rewriting, access control, and security
+  - Features: SEO-friendly URLs, HTTP→HTTPS redirects
+
+- **index.php**
+  - Purpose: Main landing page with featured products/promotional banners
+
+- **about.php**
+  - Purpose: "About Us" page (managed via admin/content/manage_about.php)
+
+- **contact.php**
+  - Purpose: "Contact Us" page (managed via admin/content/manage_contact.php)
+
+- **header.php / footer.php**
+  - Purpose: Common layout elements for site-wide consistency
+
+- **404.php**
+  - Purpose: Custom error page for non-existent routes
+
+## Core Directories
+
+### /htaccess/
+- Purpose: Backup/specialized .htaccess versions
+- Files:
+  - admin_htaccess.txt
+  - user_htaccess.txt
+  - sample_htaccess.txt
+
+### /auth/
+- Purpose: Authentication handling
+- Files:
+  - login.php
+  - register.php
+  - logout.php
+  - forgot_password.php
+  - reset_password.php
+
+### /user/
+- Purpose: User account area
+- Files:
+  - dashboard.php
+  - profile.php
+  - account_update.php
+  - order_history.php
+  - wishlist.php
+
+### /staff/
+- Purpose: Staff portal
+- Files:
+  - staff_dashboard.php
+  - staff_profile.php
+  - staff_account_update.php
+  - scheduling/
+    - shift_schedule.php
+    - request_time_off.php
+
+### /cart/
+- Purpose: Shopping cart operations
+- Files:
+  - cart.php
+  - checkout.php
+
+### /admin/
+- Purpose: Store management
+- Key Files:
+  - admin_dashboard.php
+  - manage_users.php
+  - manage_staff.php
+  - manage_orders.php
+  - manage_categories.php
+  - product/
+    - add_product.php
+    - edit_product.php
+    - delete_product.php
+    - manage_product.php
+  - content/
+    - manage_banners.php
+    - manage_about.php
+    - manage_contact.php
+  - reports/
+    - sales_report.php
+    - user_report.php
+    - inventory_report.php
+  - marketing/
+    - coupons.php
+    - discounts.php
+    - promotions.php
+    - newsletter.php
+  - assets/
+    - css/admin_style.css
+    - js/admin_script.js
+    - images/admin_logo.png
+
+### /includes/
+- Purpose: Backend scripts
+- Files:
+  - config.php
+  - db_connect.php
+  - functions.php
+  - session.php
+  - middleware.php
+
+### /assets/
+- Purpose: Frontend resources
+- Structure:
+  - css/style.css
+  - js/script.js
+  - images/
+    - logo.png
+    - banner.jpg
+    - icons/
+  - uploads/
+    - products/
+    - banners/
+
+### Optional Directories
+- **/docs/**
+  - Purpose: Documentation
+  - Files: README.md
+
+- **/cache/**
+  - Purpose: Caching system
+  - Files: index.html
+
+## Additional Files
+- robots.txt
+- sitemap.xml
+- privacy.php
+- terms.php
