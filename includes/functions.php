@@ -11,7 +11,7 @@ function isLoggedIn() {
 
 // Function to check user role
 function hasRole($role) {
-    return isset($_SESSION['role']) && $_SESSION['role'] === $role;
+    return isset($_SESSION['user_role']) && strcasecmp($_SESSION['user_role'], $role) === 0;
 }
 
 // Function to redirect to a specific URL

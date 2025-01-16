@@ -1,42 +1,42 @@
 <?php
-// Include session management, reusable functions, and database connection
 require_once '../includes/session.php';
 require_once '../includes/db_connect.php';
 require_once '../includes/functions.php';
 
-// Handle login form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = sanitize($_POST['email']); // Sanitize user input
+    $email = sanitize($_POST['email']);
     $password = $_POST['password'];
 
     if (!empty($email) && !empty($password)) {
-        // Query the database for the user
-        $query = $db->prepare("SELECT * FROM users WHERE email = :email");
-        $query->bindParam(':email', $email);
-        $query->execute();
-        $user = $query->fetch(PDO::FETCH_ASSOC);
+        try {
+            $query = $db->prepare("SELECT * FROM users WHERE email = :email");
+            $query->bindParam(':email', $email);
+            $query->execute();
+            $user = $query->fetch(PDO::FETCH_ASSOC);
 
-        // Debugging: Check if the user is found
-        if (!$user) {
-            $error = "No user found with the provided email.";
-        } elseif (!isset($user['password'])) { // Check password column
-            $error = "Password column is missing in the database.";
-        } elseif (password_verify($password, $user['password'])) {
-            // Store user information in the session
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['role'] = $user['user_role'];
+            if ($user && password_verify($password, $user['password'])) {
+                if ($user['account_status'] !== 'Active') {
+                    $error = "Your account is {$user['account_status']}. Please contact support.";
+                } else {
+                    // Set session variables
+                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['username'] = $user['username'];
+                    $_SESSION['user_role'] = $user['user_role'];
 
-            // Redirect to the appropriate dashboard based on role
-            if ($user['user_role'] === 'Admin') {
-                redirect('../admin/admin_dashboard.php');
-            } elseif ($user['user_role'] === 'Staff') {
-                redirect('../staff/staff_dashboard.php');
+                    // Redirect based on role
+                    if (strcasecmp($user['user_role'], 'Admin') === 0) {
+                        redirect('../admin/admin_dashboard.php');
+                    } elseif (strcasecmp($user['user_role'], 'Staff') === 0) {
+                        redirect('../staff/staff_dashboard.php');
+                    } else {
+                        redirect('../index.php');
+                    }
+                }
             } else {
-                redirect('../index.php');
+                $error = "Invalid email or password.";
             }
-        } else {
-            $error = "Invalid email or password.";
+        } catch (PDOException $e) {
+            $error = "Database error: " . $e->getMessage();
         }
     } else {
         $error = "Please fill in all fields.";
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="/AlphaOnline/assets/css/log_style.css"> <!-- Adjusted CSS path -->
+    <link rel="stylesheet" href="/AlphaOnline/assets/css/log_style.css">
 </head>
 <body>
     <div class="login-container">

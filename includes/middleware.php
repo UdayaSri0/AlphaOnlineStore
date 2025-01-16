@@ -1,42 +1,46 @@
 <?php
-require_once 'config.php'; // Include the configuration file
-require_once 'functions.php'; // Ensure functions like isLoggedIn, redirect, and hasRole are defined
+require_once 'config.php';
+require_once 'functions.php';
 
-/**
- * Middleware to restrict access to logged-in users
- */
+function startSessionIfNotStarted() {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+}
+
+// Middleware to restrict access to logged-in users
 function requireLogin() {
-    session_start(); // Ensure session is started
-    if (!isLoggedIn()) {
+    startSessionIfNotStarted();
+    if (!isset($_SESSION['user_id'])) {
         $_SESSION['error'] = "You must log in to access this page.";
         redirect(BASE_URL . 'auth/login.php');
     }
 }
 
-/**
- * Middleware to restrict access to admin-only pages
- */
+// Middleware to restrict access to admin-only pages
 function requireAdmin() {
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start(); // Ensure the session is started
-    }
-
-    // Check if the user is logged in and has the role of 'admin'
-    if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
+    startSessionIfNotStarted();
+    if (!hasRole('Admin')) {
         $_SESSION['error'] = "Access denied. Admins only.";
-        header('Location: ' . BASE_URL); // Redirect to the homepage
-        exit;
+        redirect(BASE_URL);
     }
 }
 
-
-/**
- * Middleware to restrict access to staff-only pages
- */
+// Middleware to restrict access to staff-only pages
 function requireStaff() {
-    session_start(); // Ensure session is started
-    if (!isLoggedIn() || !hasRole('staff')) {
+    startSessionIfNotStarted();
+    if (!hasRole('Staff')) {
         $_SESSION['error'] = "Access denied. Staff members only.";
         redirect(BASE_URL);
     }
 }
+
+// Middleware to restrict access to general users
+function requireUser() {
+    startSessionIfNotStarted();
+    if (!hasRole('Customer')) {
+        $_SESSION['error'] = "Access denied. Users only.";
+        redirect(BASE_URL);
+    }
+}
+?>
