@@ -13,153 +13,100 @@ $user_image = $_SESSION['user_image'] ?? 'assets/images/user.png'; // Default us
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>Online Clothing Store</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Clothing Store</title>
 
-    <style>
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            /* Add space between image and text */
-            position: relative;
-            cursor: pointer;
-        }
+  <!-- Font Awesome CSS -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
 
-        .user-info .user-image {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid #fff;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .user-info .user-image:hover {
-            transform: scale(1.1);
-        }
-
-        .user-info .username {
-            font-size: 14px;
-            color: #fff;
-            font-weight: bold;
-        }
-
-        .user-info .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            overflow: hidden;
-            z-index: 1000;
-            padding: 10px 0;
-        }
-
-        .user-info:hover .dropdown-menu {
-            display: block;
-        }
-
-        .user-info .dropdown-menu a {
-            display: block;
-            padding: 10px 15px;
-            color: #333;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .user-info .dropdown-menu a:hover {
-            background-color: #f0f0f0;
-            color: #000;
-        }
-    </style>
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
 <body>
-    <header>
-        <div class="header-container">
-            <!-- Logo -->
-            <div class="logo">
-                <a href="index.php"><img src="assets/images/logo.png" alt="Logo"></a>
-            </div>
+  <header>
+    <div class="header-container">
+      <!-- Logo -->
+      <div class="logo">
+        <a href="index.php"><img src="assets/images/logo.png" alt="Logo" /></a>
+      </div>
 
-            <!-- Navigation Links -->
-            <nav class="nav-menu">
-                <div class="dropdown">
-                    <button class="dropbtn">Dropdown 1</button>
-                    <div class="dropdown-content">
-                        <a href="#">Option 1</a>
-                        <a href="#">Option 2</a>
-                        <a href="#">Option 3</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn">Dropdown 2</button>
-                    <div class="dropdown-content">
-                        <a href="#">Option 1</a>
-                        <a href="#">Option 2</a>
-                        <a href="#">Option 3</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn">Dropdown 3</button>
-                    <div class="dropdown-content">
-                        <a href="#">Option 1</a>
-                        <a href="#">Option 2</a>
-                        <a href="#">Option 3</a>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn">Dropdown 4</button>
-                    <div class="dropdown-content">
-                        <a href="#">Option 1</a>
-                        <a href="#">Option 2</a>
-                        <a href="#">Option 3</a>
-                    </div>
-                </div>
-            </nav>
-            <nav class="nav-menu">
-                <a href="about.php">About</a>
-                <a href="about.php">About</a>
-                <a href="contact.php">Contact</a>
-
-                <?php if ($is_logged_in): ?>
-                    <!-- Role-Specific Dashboard Links -->
-                    <?php if ($user_role === 'admin'): ?>
-                        <a href="admin/admin_dashboard.php">Admin Dashboard</a>
-                    <?php elseif ($user_role === 'staff'): ?>
-                        <a href="staff/staff_dashboard.php">Staff Dashboard</a>
-                    <?php elseif ($user_role === 'user'): ?>
-                        <a href="user/dashboard.php">User Dashboard</a>
-                    <?php endif; ?>
-                <?php else: ?>
-                    <a href="auth/login.php">Login</a>
-                    <a href="auth/register.php">Register</a>
-                <?php endif; ?>
-            </nav>
-
-            <!-- User Info -->
-            <?php if ($is_logged_in): ?>
-                <div class="user-info">
-                    <img class="user-image" src="<?= htmlspecialchars($user_image); ?>" alt="User Image">
-                    <span class="username"><?= htmlspecialchars($username); ?></span>
-                    <div class="dropdown-menu">
-                        <a href="user/manage_account.php">Manage Account</a>
-                        <a href="user/change_password.php">Change Password</a>
-                        <a href="auth/logout.php">Logout</a>
-                    </div>
-                </div>
-            <?php endif; ?>
+      <!-- Primary Navigation with Dropdowns -->
+      <nav class="nav-menu">
+        <div class="dropdown">
+          <button class="dropbtn">Dropdown 1</button>
+          <div class="dropdown-content">
+            <a href="#">Option 1</a>
+            <a href="#">Option 2</a>
+            <a href="#">Option 3</a>
+          </div>
         </div>
-    </header>
-</body>
+        <div class="dropdown">
+          <button class="dropbtn">Dropdown 2</button>
+          <div class="dropdown-content">
+            <a href="#">Option 1</a>
+            <a href="#">Option 2</a>
+            <a href="#">Option 3</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Dropdown 3</button>
+          <div class="dropdown-content">
+            <a href="#">Option 1</a>
+            <a href="#">Option 2</a>
+            <a href="#">Option 3</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn">Dropdown 4</button>
+          <div class="dropdown-content">
+            <a href="#">Option 1</a>
+            <a href="#">Option 2</a>
+            <a href="#">Option 3</a>
+          </div>
+        </div>
+      </nav>
 
+      <!-- Secondary Navigation -->
+      <nav class="nav-menu">
+        <a href="about.php">About</a>
+        <a href="contact.php">Contact</a>
+        <?php if ($is_logged_in): ?>
+          <?php if ($user_role === 'admin'): ?>
+            <a href="admin/admin_dashboard.php">Admin Dashboard</a>
+          <?php elseif ($user_role === 'staff'): ?>
+            <a href="staff/staff_dashboard.php">Staff Dashboard</a>
+          <?php elseif ($user_role === 'user'): ?>
+            <a href="user/dashboard.php">User Dashboard</a>
+          <?php endif; ?>
+        <?php else: ?>
+          <a href="auth/login.php">Login</a>
+          <a href="auth/register.php">Register</a>
+        <?php endif; ?>
+      </nav>
+
+      <!-- User Info (Profile/Logout) -->
+      <?php if ($is_logged_in): ?>
+        <div class="user-info">
+          <img class="user-image" src="<?= htmlspecialchars($user_image); ?>" alt="User Image" />
+          <span class="username"><?= htmlspecialchars($username); ?></span>
+          <div class="dropdown-menu">
+            <a href="user/manage_account.php">Manage Account</a>
+            <a href="user/change_password.php">Change Password</a>
+            <a href="auth/logout.php">Logout</a>
+          </div>
+        </div>
+      <?php endif; ?>
+    </div>
+  </header>
+</body>
 </html>

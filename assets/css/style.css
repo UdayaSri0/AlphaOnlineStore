@@ -1,4 +1,8 @@
-/* General Reset */
+/* 
+==========================================================
+  GENERAL RESET & BASE STYLES
+==========================================================
+*/
 * {
     margin: 0;
     padding: 0;
@@ -13,18 +17,19 @@ body {
     overflow-x: hidden;
 }
 
-/* Header Styles */
+/*
+==========================================================
+  HEADER
+==========================================================
+*/
 header {
     background: linear-gradient(90deg, #6a11cb, #2575fc);
     color: #fff;
-    padding: 15px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     position: sticky;
     top: 0;
     z-index: 1000;
+    padding: 0 20px; /* Keep minimal horizontal padding */
 }
 
 /* Header Container */
@@ -32,28 +37,33 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    height: 60px; /* Fixed header height (optional) */
 }
 
-/* Logo */
+/* LOGO */
 .logo img {
     height: 50px;
-    border-radius: 10px;
+    border-radius: 8px;
     transition: transform 0.3s;
 }
-
 .logo img:hover {
     transform: scale(1.1);
 }
 
-/* Navigation Menu */
+/*
+==========================================================
+  NAVIGATION MENU
+==========================================================
+*/
 .nav-menu {
     display: flex;
-    gap: 20px;
+    align-items: center;
+    gap: 20px; /* Space between navigation items */
 }
 
+/* Generic link styling for nav */
 .nav-menu a {
     color: #fff;
     text-decoration: none;
@@ -66,17 +76,79 @@ header {
 .nav-menu a:hover {
     background-color: #fff;
     color: #6a11cb;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
-/* User Info */
+/*
+==========================================================
+  DROPDOWN MENUS
+==========================================================
+*/
+.dropdown {
+    position: relative;
+}
+
+/* Dropdown button */
+.dropbtn {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase; /* optional style */
+    border-radius: 5px;
+}
+
+.dropbtn:hover {
+    background-color: #fff;
+    color: #6a11cb;
+    transform: scale(1.05);
+}
+
+/* Dropdown content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0; /* set to 'right: 0;' if you want content aligned to the right of the button */
+    background-color: #fff;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+/* Dropdown links */
+.dropdown-content a {
+    color: #333;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*
+==========================================================
+  USER INFO DROPDOWN
+==========================================================
+*/
 .user-info {
     position: relative;
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #fff;
     cursor: pointer;
+    color: #fff;
 }
 
 .user-info .user-image {
@@ -87,21 +159,26 @@ header {
     object-fit: cover;
     transition: transform 0.3s ease;
 }
-
 .user-info .user-image:hover {
     transform: scale(1.1);
 }
+.user-info .username {
+    font-size: 14px;
+    font-weight: bold;
+}
 
+/* Dropdown menu for user info */
 .user-info .dropdown-menu {
     display: none;
     position: absolute;
-    top: 60px;
+    top: 100%;
     right: 0;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     overflow: hidden;
     z-index: 1000;
+    padding: 10px 0;
 }
 
 .user-info:hover .dropdown-menu {
@@ -115,13 +192,16 @@ header {
     text-decoration: none;
     transition: background-color 0.3s ease;
 }
-
 .user-info .dropdown-menu a:hover {
     background-color: #f0f0f0;
     color: #000;
 }
 
-/* Footer */
+/*
+==========================================================
+  FOOTER (Optional)
+==========================================================
+*/
 footer {
     background: linear-gradient(90deg, #2575fc, #6a11cb);
     color: #eee;
@@ -131,15 +211,23 @@ footer {
     border-top: 3px solid #444;
 }
 
-/* Responsive Design */
+/*
+==========================================================
+  RESPONSIVE DESIGN
+==========================================================
+*/
 @media (max-width: 768px) {
+    /* Hide or transform the nav-menu on smaller screens */
     .nav-menu {
-        display: none;
+        display: none; /* or transform into a burger menu if needed */
     }
+
     .header-container {
         flex-direction: column;
         align-items: center;
+        height: auto; /* Let the header grow in height */
     }
+    
     .user-info {
         margin-top: 10px;
     }
