@@ -148,3 +148,9 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 🌟 **Thank you for checking out Alpha Online Store! Happy Coding!**
+
+
+- **X (Twitter)**: [@Udaya_Sri_](https://x.com/Udaya_Sri_)
+- **Facebook**: [Udaya Sri Facebook](https://www.facebook.com/share/14xF3XuXpk/?mibextid=wwXIfr)
+- **Instagram**: [@udayasrisri1](https://www.instagram.com/udayasrisri1/)
+- **LinkedIn**: [Udaya Sri](https://www.linkedin.com/in/udaya-sri-0922b91a5/)

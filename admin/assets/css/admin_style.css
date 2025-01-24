@@ -1,0 +1,126 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Header Styles */
+.admin-header {
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.admin-header .logo a {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.admin-header .nav-menu a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.3s;
+}
+
+.admin-header .nav-menu a:hover {
+    color: #f0f0f0;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.dashboard-container h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Stats Cards */
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #2575fc;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card i {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.card h2 {
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.card p {
+    font-size: 1rem;
+}
+
+/* Recent Activities */
+.recent-activities {
+    margin-top: 40px;
+}
+
+.recent-activities h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.recent-activities ul {
+    list-style: none;
+    padding: 0;
+}
+
+.recent-activities li {
+    background: #f4f4f9;
+    margin: 10px 0;
+    padding: 10px;
+    border-left: 5px solid #6a11cb;
+    font-size: 1rem;
+}
+
+/* Footer */
+.admin-footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 0;
+    background: #6a11cb;
+    color: #fff;
+    font-size: 0.9rem;
+    border-top: 2px solid #444;
+}
