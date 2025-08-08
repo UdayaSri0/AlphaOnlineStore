@@ -4,6 +4,11 @@ include 'header.php';
 
 <div class="container">
     <h1>Contact Us</h1>
+    <?php if (isset($_GET['status'])): ?>
+        <p class="status-message">
+            <?php echo $_GET['status'] === 'success' ? 'Message sent successfully!' : 'There was an error sending your message. Please try again.'; ?>
+        </p>
+    <?php endif; ?>
     <form action="send_message.php" method="post">
         <label for="name">Your Name:</label>
         <input type="text" id="name" name="name" required>
